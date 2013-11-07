@@ -1,0 +1,237 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>jQuery Mobile Bootstrap Theme</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="../js/websocket.js"></script>
+		<script src="../js/jquery.imagemapster.js"></script>		
+		<script>			
+			$(document).ready(function(){
+				//build body mapster
+				var areaHurt = {
+                		eyes: ["Πονάνε τα μάτια μου",
+                    		"δεν βλέπω τίποτα, βασικά ",
+                    		"1"
+    	                ],
+    	                chest: ["Πονάει το στήθος μου",
+                    		"μάλλον είμαι φθισικός"
+    	                ]
+	    	        };
+					
+				$('#humanBody').mapster({
+					fillColor: 'A9CFD5',
+			        fillOpacity: 0.8,
+			        mapKey: 'data-key',
+			        isSelectable: false,
+			        onMouseover: function (data) {
+			            inArea = true;
+			            //when user hovers an area then we fill in the caption area accordingly
+            			$('#human-caption-header').html(areaHurt[data.key][0]);
+			            $('#human-caption-text').html(areaHurt[data.key][1]);
+            			$('#human-caption').show();  
+						$('#next').show();  
+            			//scroll to bottom
+						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");          			
+            			//unblind click event that was binded before from next button
+            			$("#next" ).unbind();
+            			//bind click event to next button
+            			$("#next").click(function() {
+							// setup websocket with callbacks
+							ws = new WebSocket('ws://localhost:8088/');
+							ws.onopen = function() {
+								console.log('connect');
+								ws.onmessage = function(event) {
+									$('#human-caption-text').text(event.data);
+								};
+								//when CLIPS program returns and the websocket is closed hide the input textfield
+								ws.onclose = function() {
+									console.log('DISCONNECT');
+									$("#input").hide();
+									$('#next').hide(); 
+									$("#input").unbind();
+									 
+								};		
+				 	 			//send ws message with area hurt id
+				 	 			ws.send(areaHurt[data.key][2])						
+							};	
+	            			$('#next').hide();  
+			 	 			//bind ws onmessage event handler, fill in the caption area with the new message/question
+			 	 			
+			 	 			
+			 	 			//show input textfield and bind change event
+			 	 			$("#input").show();
+			 	 			$( "#input" ).change(function() {
+			 	 				if($("#input").val().toLowerCase()=="yes"||$("#input").val().toLowerCase()=="no"){
+									ws.send($("#input").val());
+									$("#input").val("");
+								}
+								else
+									alert("please give an appropriate answer")
+							});
+							
+						});            			
+			        }/*,
+			        onMouseout: function (data) {
+			            inArea = false;
+            			$('#human-caption').hide();
+			        }*/
+				});
+				
+			
+			});
+		</script>
+	</head>
+	<body>
+		<div data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline">
+				<h1>Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
+						<!--<li><a href="buttons.html" data-icon="star">Buttons</a></li>
+						<li><a href="listviews.html" data-icon="grid">Lists</a></li>
+						-->
+						<li><a href="forms.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
+						<li><a href="nav.html" data-icon="search">Πληροφορίες</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content" data-theme="a" >
+
+				<!--<a href="https://github.com/commadelimited/jQuery-Mobile-Bootstrap-Theme" data-role="button" data-icon="star">Get the code</a>-->
+
+				<h2>Ευφυές σύστημα</h2>			
+				<p>Παρακαλώ επιλέξτε το μέρος του σώματος</p>
+				<div style="min-height:100px">
+    				<div id="human-caption" style=display:none;">
+        				<div id="human-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
+        				<div id="human-caption-text"></div>	
+        				<input type="text" name="name" id="input" value="" style="display:none"  />
+	    				<a id="next" href='' data-role='button' data-icon='check'>συνέχεια</a>	    				
+					</div>
+				</div>
+				<p><center><img usemap="#humanMap" id="humanBody" width="70%"  src="../images/human.jpg"/></center></p>
+				<map name="humanMap">
+  					<area data-name="eyes" data-key="eyes" shape="poly" coords="382,99,374,109,375,118,381,120,386,123,393,124,400,125,406,124,412,120,420,121,425,121,431,125,439,127,448,125,454,124,458,119,458,114,454,110,450,107,445,104,439,101,428,100,421,102,419,105,416,107,412,106,411,102,408,99,397,97" href="sun.htm" alt="Sun">
+  					<area data-name="chest" data-key="chest" shape="poly" coords="322,319,313,340,310,361,310,372,317,376,324,379,331,383,343,387,349,387,365,386,378,382,391,377,399,369,401,370,407,362,410,359,421,363,429,370,433,374,440,378,452,383,462,388,468,391,474,393,484,392,492,390,502,384,511,379,514,373,517,364,520,351,518,341,510,315,506,304,501,293,496,283,490,276,477,273,460,271,445,268,426,266,392,266,380,266,369,268,359,269,349,275,341,278,331,298" href="mercur.htm" alt="Mercury">
+				</map>
+				
+				
+				<!--
+				<form action="#" method="get">	
+					<div data-role="fieldcontain">
+						<label for="name">Text Input:</label>
+						<input type="text" name="name" id="name" value=""  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="textarea">Textarea:</label>
+						<textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="search">Search Input:</label>
+						<input type="search" name="password" id="search" value=""  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="slider2">Flip switch:</label>
+						<select name="slider2" id="slider2" data-role="slider">
+							<option value="off">Off</option>
+							<option value="on">On</option>
+						</select>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="slider">Slider:</label>
+					 	<input type="range" name="slider" id="slider" value="50" min="0" max="100" data-highlight="true"  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>Choose as many snacks as you'd like:</legend>
+							<input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom" />
+							<label for="checkbox-1a">Cheetos</label>
+
+							<input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom" />
+							<label for="checkbox-2a">Doritos</label>
+
+							<input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
+							<label for="checkbox-3a">Fritos</label>
+
+							<input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
+							<label for="checkbox-4a">Sun Chips</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+					    	<legend>Font styling:</legend>
+					    	<input type="checkbox" name="checkbox-6" id="checkbox-6" class="custom" />
+							<label for="checkbox-6">b</label>
+
+							<input type="checkbox" name="checkbox-7" id="checkbox-7" class="custom" />
+							<label for="checkbox-7"><em>i</em></label>
+
+							<input type="checkbox" name="checkbox-8" id="checkbox-8" class="custom" />
+							<label for="checkbox-8">u</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+					    <fieldset data-role="controlgroup">
+					    	<legend>Choose a pet:</legend>
+							<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
+							<label for="radio-choice-1">Cat</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2"  />
+							<label for="radio-choice-2">Dog</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3"  />
+							<label for="radio-choice-3">Hamster</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-4" value="choice-4"  />
+							<label for="radio-choice-4">Lizard</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+					    <fieldset data-role="controlgroup" data-type="horizontal">
+							<legend>Layout view:</legend>
+							<input type="radio" name="radio-choice-b" id="radio-choice-c" value="on" checked="checked" />
+							<label for="radio-choice-c">List</label>
+							<input type="radio" name="radio-choice-b" id="radio-choice-d" value="off" />
+							<label for="radio-choice-d">Grid</label>
+							<input type="radio" name="radio-choice-b" id="radio-choice-e" value="other" />
+							<label for="radio-choice-e">Gallery</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="select-choice-a" class="select">Choose shipping method:</label>
+						<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+							<option>Custom menu example</option>
+							<option value="standard">Standard: 7 day</option>
+							<option value="rush">Rush: 3 days</option>
+							<option value="express">Express: next day</option>
+							<option value="overnight">Overnight</option>
+						</select>
+					</div>
+
+					<div class="ui-body ui-body-b">
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
+							<div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
+					    </fieldset>
+					</div>
+				</form>
+				-->
+			</div>
+		</div>
+	</body>
+</html>

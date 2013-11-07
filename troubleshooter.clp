@@ -9,8 +9,8 @@
  		" 2.) Bulging Eye." crlf crlf 
  		" 3.) Double Vision." crlf crlf 
  		" 4.) Drooping Eyelid." crlf crlf 
- 		" 5.) EXIT OF SYSTEM.." crlf crlf crlf 
-	 	" Enter no. of your choise: " 
+ 		" 5.) EXIT OF SYSTEM.." crlf crlf 
+	 	" Enter no. of your choise: " crlf 
 	) 
 	(assert (iffoundChoice (read)))
 )
@@ -24,8 +24,7 @@
  	=> 
  	(retract ?retractCh1) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes 
-		red ? (yes | no) " crlf crlf " Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from eyes red ? (yes | no) "crlf
 	) 
  	(assert (ifYesNochoise (read)))
 ) 
@@ -37,9 +36,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes 
-		swollen eyelids ? (Yes | No) " crlf crlf " Your 
-		answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from eyes swollen eyelids ? (Yes | No) " crlf
 	) 
  	(assert (ifYesNochoise1 (read)))
  ) 
@@ -51,10 +48,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from pus 
-		like discharge and crusting of eyelids on 
-		awakening ? (Yes | No) " crlf crlf 
-		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from pus like discharge and crusting of eyelids on awakening ? (Yes | No) " crlf 
 	) 
 	(assert (ifYesNochoise2 (read)))
 ) 
@@ -65,11 +59,9 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf" You are suffering from 
-		Bacterial Conjunctivitis OR blepharitis.. " crlf 
-		crlf " Thank you for using my Program... 
-		"crlf crlf 
+ 		printout t crlf crlf crlf" You are suffering from Bacterial Conjunctivitis OR blepharitis.. " crlf  
 	)
+	(exit)
 ) 
 ;;------------------R4------------------ 
 (defrule Discharge_from_the_Eye4 
@@ -79,12 +71,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		sticky, crusty eyelids" crlf 
- 		" red, itchy eyelids" crlf 
- 		" loss of eyelashes ? (Yes | 
-		No) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from sticky, crusty eyelids red, itchy eyelidsloss of eyelashes ? (Yes | No) " crlf  
  	) 
 	(assert (ifYesNochoise3 (read)))
 ) 
@@ -95,10 +82,8 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Blepharitis OR Conjunctivitis OR Stye .. " 
-		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Blepharitis OR Conjunctivitis OR Stye .. " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R6------------------ 
@@ -109,12 +94,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		watery discharge" crlf 
- 		" fever and sore throat" crlf 
- 		" swollen glands in neck ? (Yes | No) " 
-		crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from watery discharge fever and sore throat swollen glands in neck ? (Yes | No) " crlf  
  	) 
  	(assert (ifYesNochoise4 (read))) 
 ) 
@@ -125,10 +105,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Viral Conjunctivitis OR allergic conjunctivitis... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Viral Conjunctivitis OR allergic conjunctivitis... " crlf 
+ 		(exit)
 	) 
 ) 
 ;;------------------R8------------------ 
@@ -138,10 +116,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.. Try again..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You should be sure for your symptoms.. Try again..." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R9------------------ 
@@ -152,11 +128,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		watery discharge" crlf 
- 		" seasonal allergies" crlf 
- 		" itching eyes ? (Yes | No) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from watery discharge seasonal allergies itching eyes ? (Yes | No) " crlf  
  	) 
  	(assert (ifYesNochoise5 (read))) 
 ) 
@@ -167,10 +139,8 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from 
-		Allergic Conjunctivitis OR viral conjunctivitis ... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf "You are suffering from Allergic Conjunctivitis OR viral conjunctivitis ... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R11------------------ 
@@ -181,13 +151,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		fever and sore throat " crlf 
- 		" red rash, begins on face then body " 
-		crlf 
- 		" clear discharge from eye ? (Yes | No) " 
-		crlf crlf 
-	 	" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from fever and sore throat red rash, begins on face then body clear discharge from eye ? (Yes | No) " crlf
 	) 
  	(assert (ifYesNochoise6 (read))) 
 ) 
@@ -198,10 +162,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Measles OR Viral Conjunctivitis ... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Measles OR Viral Conjunctivitis ... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R13------------------ 
@@ -211,10 +173,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.. Try again..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You should be sure for your symptoms.. Try again..." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R14------------------ 
@@ -225,10 +185,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "Are you suffer from 
-		swelling of eyelids, tongue and face ? (yes | no) " 
-		crlf crlf 
-		" Your answer: " 
+ 		printout t crlf crlf crlf "Are you suffer from swelling of eyelids, tongue and face ? (yes | no) " crlf 
 	) 
  	(assert (ifYesNochoise7 (read))) 
 ) 
@@ -240,12 +197,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		sweating " crlf 
- 		" use of new medication, insect bite, new 
-		foods" crlf 
- 		" rapid heart beat ? (yes | no) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from sweating use of new medication, insect bite, new foods rapid heart beat ? (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise8 (read))) 
 ) 
@@ -256,10 +208,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Allergy OR Anaphylaxis ... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Allergy OR Anaphylaxis ... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R17------------------ 
@@ -269,10 +219,8 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.. Try again..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You should be sure for your symptoms.. Try again..." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R18------------------ 
@@ -283,9 +231,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes 
-		red with watery discharge ? (yes | no) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from eyes red with watery discharge ? (yes | no) " crlf  
  	) 		 
  	(assert (ifYesNochoise9 (read))) 
 ) 
@@ -297,13 +243,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		headache centered around eye "crlf 
- 		" headaches usually lasting 15-30 minutes 
-		"crlf 
- 		" more common in men "crlf 
- 		" nasal discharge ? (yes | no) " crlf crlf 
- 		" Your answer: " ) 
+ 		printout t crlf crlf crlf " Are you suffer from headache centered around eye headaches usually lasting 15-30 minutes more common in men nasal discharge ? (yes | no) " crlf  ) 
  		(assert (ifYesNochoise10 (read))) 
 ) 
 ;;------------------R20------------------ 
@@ -313,11 +253,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Cluster Headache OR Migraine Headache OR 
-		Allergic Rhinitis ... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Cluster Headache OR Migraine Headache OR Allergic Rhinitis ... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R21------------------ 
@@ -328,11 +265,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		more common in elderly people "crlf 
-		" may develop pus like drainage from eye ? 
-		(yes | no) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from more common in elderly people may develop pus like drainage from eye ? (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise11 (read))) 
 ) 
@@ -343,10 +276,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from 
-		Dacryocystitis OR Stye OR Conjunctivitis..." 
-		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You are suffering from Dacryocystitis OR Stye OR Conjunctivitis..." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R23------------------ 
@@ -356,10 +287,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You should be sure for your symptoms.." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R24------------------ 
@@ -370,9 +299,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		blurred vision ? (yes | no) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from blurred vision ? (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise12 (read))) 
 ) 
@@ -384,13 +311,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from pain 
-		and redness "crlf 
- 		" excessive tearing " crlf 
- 		" sensitivity to light" crlf 
- 		" feeling of foreign body in eye ? (yes | no) " 
-		crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from pain and redness excessive tearing sensitivity to light feeling of foreign body in eye ? (yes | no) " crlf  
  	) 
 	(assert (ifYesNochoise13 (read))) 
 ) 
@@ -401,10 +322,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from 
-		Corneal Abrasion OR Corneal Ulcer... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf "You are suffering from Corneal Abrasion OR Corneal Ulcer... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R27------------------ 
@@ -415,11 +334,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes 
-		red lump on the edge of eyelid "crlf 
- 		" lump may drain pus " crlf 
- 		" painful lump ? (yes | no) " crlf crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from eyes red lump on the edge of eyelid lump may drain pus painful lump ? (yes | no) " crlf  
  	) 
 	(assert (ifYesNochoise14 (read))) 
 ) 
@@ -430,10 +345,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from 
-		Stye OR Chalazion... " 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf "You are suffering from Stye OR Chalazion... " crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R29------------------ 
@@ -444,14 +357,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from 
-		weakness of one side of the face "crlf 
- 		" recent viral illness " crlf 
- 		" drooping of lower eyelid " crlf 
- 		" difficulty closing eyelid " crlf 
- 		" discharge from the eye ? (yes| no) " crlf 
-		crlf 
- 		" Your answer: " 
+ 		printout t crlf crlf crlf " Are you suffer from weakness of one side of the face recent viral illness drooping of lower eyelid difficulty closing eyelid discharge from the eye ? (yes| no) " crlf 		 
  	) 
  	(assert (ifYesNochoise15 (read))) 
 ) 
@@ -462,11 +368,8 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from 
-		Bell's Palsy OR Multiple Sclerosis OR Stroke OR 
-		Acoustic Neuroma..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf "You are suffering from Bell's Palsy OR Multiple Sclerosis OR Stroke OR Acoustic Neuroma..." crlf
+ 		(exit)
 	) 
 ) 
 ;;------------------R31------------------ 
@@ -476,10 +379,8 @@
  	=>
   	(retract ?retractChy) 
 	(
-		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.. Try again..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+		printout t crlf crlf crlf " You should be sure for your symptoms.. Try again..." crlf
+		(exit)
 	) 
 ) 
 ;;------------------R32------------------ 
@@ -489,9 +390,9 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You should be sure for 
-		your symptoms.. Try again..." 
- 		crlf crlf " Thank you for using my 
-		Program... "crlf crlf 
+ 		printout t crlf crlf crlf " You should be sure for your symptoms.. Try again..." crlf
+ 		(exit)
 	) 
 )
+(reset)
+(run)
