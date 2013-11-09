@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>jQuery Mobile Bootstrap Theme</title>
+		<title>Ευφυής διάγνωση</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -14,12 +14,12 @@
 			$(document).ready(function(){
 				//build body mapster
 				var areaHurt = {
-                		eyes: ["Πονάνε τα μάτια μου",
-                    		"δεν βλέπω τίποτα, βασικά ",
+                		eyes: ["Έχετε επιλέξει ότι το πρόβλημα εντοπίζετε στην περιοχή των ματιών",
+                    		"Για να συνεχίσετε πατήστε συνέχεια",
                     		"1"
     	                ],
-    	                chest: ["Πονάει το στήθος μου",
-                    		"μάλλον είμαι φθισικός"
+    	                chest: ["Έχετε επιλέξει ότι το πρόβλημα εντοπίζετε στην περιοχή του θώρακα",
+                    		"Για να συνεχίσετε πατήστε συνέχεια"
     	                ]
 	    	        };
 					
@@ -44,35 +44,35 @@
 							// setup websocket with callbacks
 							ws = new WebSocket('ws://localhost:8088/');
 							ws.onopen = function() {
-								console.log('connect');
+								console.log('connect');																									
+								//show input buttons
+								$("#buttons").show();
+								//bind click event to each input button
+								$(".inputButton").unbind();
+								//send to websocket the value of the clicked button
+								$(".inputButton").click(function(){
+									ws.send(this.value);
+								});						
 								ws.onmessage = function(event) {
 									$('#human-caption-text').text(event.data);
 								};
 								//when CLIPS program returns and the websocket is closed hide the input textfield
 								ws.onclose = function() {
-									console.log('DISCONNECT');
-									$("#input").hide();
-									$('#next').hide(); 
-									$("#input").unbind();
-									 
+									console.log('DISCONNECT');									
+									$("#buttons").hide();
+									$('#next').hide(); 									 
 								};		
 				 	 			//send ws message with area hurt id
 				 	 			ws.send(areaHurt[data.key][2])						
 							};	
+							ws.onerror = function() {
+								alert('Αυτήν τη στιγμή υπάρχει πρόβλημα επικοινωνίας με τον server. Παρακαλώ προσπαθήστε αργότερα')
+							}
 	            			$('#next').hide();  
 			 	 			//bind ws onmessage event handler, fill in the caption area with the new message/question
 			 	 			
 			 	 			
-			 	 			//show input textfield and bind change event
-			 	 			$("#input").show();
-			 	 			$( "#input" ).change(function() {
-			 	 				if($("#input").val().toLowerCase()=="yes"||$("#input").val().toLowerCase()=="no"){
-									ws.send($("#input").val());
-									$("#input").val("");
-								}
-								else
-									alert("please give an appropriate answer")
-							});
+			 	 			
 							
 						});            			
 			        }/*,
@@ -106,12 +106,15 @@
 				<!--<a href="https://github.com/commadelimited/jQuery-Mobile-Bootstrap-Theme" data-role="button" data-icon="star">Get the code</a>-->
 
 				<h2>Ευφυές σύστημα</h2>			
-				<p>Παρακαλώ επιλέξτε το μέρος του σώματος</p>
+				<p>Παρακαλώ επιλέξτε το μέρος του σώματος στο οποίο εντοπίζετε το πρόβλημα</p>
 				<div style="min-height:100px">
     				<div id="human-caption" style=display:none;">
         				<div id="human-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
         				<div id="human-caption-text"></div>	
-        				<input type="text" name="name" id="input" value="" style="display:none"  />
+        				<div id="buttons" style="display:none">
+        					<input class="inputButton" type="button" name="buttonYes" value="yes"/>
+        					<input class="inputButton" type="button" name="buttonNo" value="no"/>
+        				</div>
 	    				<a id="next" href='' data-role='button' data-icon='check'>συνέχεια</a>	    				
 					</div>
 				</div>
