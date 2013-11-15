@@ -12,4 +12,7 @@ In order to start server-side CLIPS interface execute:
 ./websocketd --port=8088 /Applications/CLIPS/./clips -f troubleshooter.clp
 where 8088 is the desired port /Applications/CLIPS/./clips is the path to the clips executable and troubleshooter.clp is the clips source.
 
+In order to start the server and then close the terminal execute:
+nohup loop_troubleshooter.sh &
+
 Download the right version of webSocketd from https://github.com/joewalnes/websocketd/wiki/Download-and-install
