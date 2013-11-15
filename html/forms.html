@@ -35,6 +35,7 @@
 			            $('#human-caption-text').html(areaHurt[data.key][1]);
             			$('#human-caption').show();  
 						$('#next').show();  
+						$('#chooseDoctor').hide();
             			//scroll to bottom
 						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");          			
             			//unblind click event that was binded before from next button
@@ -60,7 +61,9 @@
 								ws.onclose = function() {
 									console.log('DISCONNECT');									
 									$("#buttons").hide();
-									$('#next').hide(); 									 
+									$('#next').hide(); 
+									//show the chooseDoctor button
+									$("#chooseDoctor").show();									 
 								};		
 				 	 			//send ws message with area hurt id
 				 	 			ws.send(areaHurt[data.key][2])						
@@ -96,7 +99,7 @@
 						<!--<li><a href="buttons.html" data-icon="star">Buttons</a></li>
 						<li><a href="listviews.html" data-icon="grid">Lists</a></li>
 						-->
-						<li><a href="forms.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
+						<li><a rel="external" href="forms.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
 						<li><a href="nav.html" data-icon="search">Πληροφορίες</a></li>
 					</ul>
 				</div>
@@ -106,15 +109,16 @@
 				<!--<a href="https://github.com/commadelimited/jQuery-Mobile-Bootstrap-Theme" data-role="button" data-icon="star">Get the code</a>-->
 
 				<h2>Ευφυές σύστημα</h2>			
-				<p>Παρακαλώ επιλέξτε το μέρος του σώματος στο οποίο εντοπίζετε το πρόβλημα</p>
+				<p>Παρακαλώ επιλέξτε το μέρος του σώματος στο οποίο εντοπίζετε το πρόβλημα</p>													
 				<div style="min-height:100px">
     				<div id="human-caption" style=display:none;">
         				<div id="human-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
-        				<div id="human-caption-text"></div>	
+        				<div id="human-caption-text"></div>	        			        				        				        				
         				<div id="buttons" style="display:none">
         					<input class="inputButton" type="button" name="buttonYes" value="yes"/>
         					<input class="inputButton" type="button" name="buttonNo" value="no"/>
         				</div>
+        				<a style="display:none" id="chooseDoctor" href='listviews.html' data-role='button' data-icon='check'>επιλογή ιατρού</a>	    			
 	    				<a id="next" href='' data-role='button' data-icon='check'>συνέχεια</a>	    				
 					</div>
 				</div>
