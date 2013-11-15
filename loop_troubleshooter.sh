@@ -1,1 +1,1 @@
-while true; do ./websocketd --port=8088 ./clips -f troubleshooter.clp; done
+while true; do ./websocketd --port=8088 clips -f troubleshooter.clp; done
