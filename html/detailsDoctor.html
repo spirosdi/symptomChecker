@@ -168,8 +168,8 @@
 								$("#placeName").html(place.name);
 								$("#placeAddress").html(place.formatted_address);
 								$("#placePhoneNumber").html("tel: <a href='tel:"+place.formatted_phone_number+"'>"+place.formatted_phone_number+"</a>");
-								$("#placeUrl1").html("url1: <a href='"+place.url+"'>"+place.url+"</a>");
-								$("#placeUrl2").html("url2: <a href='"+place.website+"'>"+place.website+"</a>");   
+								$("#placeUrl1").html("url1: <a target='_blank' href='"+place.url+"'>"+place.url+"</a>");
+								$("#placeUrl2").html("url2: <a target='_blank' href='"+place.website+"'>"+place.website+"</a>");   
 								$.mobile.loading( 'hide');  
 								$("#emailContainer").show();
 								$("#emailMessage").append(diagnosis);
