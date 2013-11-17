@@ -8,11 +8,15 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>	
+
+		
 	</head>
 	<body>
-		<div data-role="page" data-theme="a">
+		<div id="listView" data-add-back-btn="true" data-role="page" data-theme="a">
 			<div data-role="header" data-position="inline">
 				<h1>Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης</h1>
+				<div id="map"></div>
 				<div data-role="navbar">
 					<ul>
 						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
@@ -26,39 +30,60 @@
 			</div>
 			<div data-role="content" data-theme="a">
 
-				<h2>Listviews</h2>
+				<h2>Αποτελέσματα:</h2>
 
-				<ul data-role="listview" data-inset="true" data-divider-theme="a">
-					<li data-role="list-divider">Swatch A</li>
-					<li data-icon="gear"><a href="">A list item</a></li>
-				</ul>
-
-				<ul data-role="listview" data-inset="true" data-divider-theme="b">
-					<li data-role="list-divider">Swatch B</li>
-					<li data-icon="info"><a href="">A list item</a></li>
-				</ul>
-
-				<ul data-role="listview" data-inset="true" data-divider-theme="c">
-					<li data-role="list-divider">Swatch C</li>
-					<li data-icon="check"><a href="">A list item</a></li>
-				</ul>
-
-				<ul data-role="listview" data-inset="true" data-divider-theme="d">
-					<li data-role="list-divider">Swatch D</li>
-					<li data-icon="grid"><a href="">A list item</a></li>
-				</ul>
-
-				<ul data-role="listview" data-inset="true" data-divider-theme="e">
-					<li data-role="list-divider">Swatch E</li>
-					<li data-icon="alert"><a href="">A list item</a></li>
-				</ul>
-
-				<ul data-role="listview" data-inset="true" data-divider-theme="f">
-					<li data-role="list-divider">Swatch F</li>
-					<li data-icon="refresh"><a href="">A list item</a></li>
-				</ul>
-
+				<ul id="doctorsList" data-role="listview" data-inset="true" data-divider-theme="a">
+					<li data-role="list-divider">Ιατροί στην περιοχή σας</li>
+				</ul>			
 			</div>
+			<script>
+			$( document ).ready(function() {
+				// Handler for .ready() called.														
+				var map;
+				var service;
+				var infowindow;
+				function initialize() {		
+					// get user's current location
+					$.mobile.loading( 'show');
+					/*navigator.geolocation.getCurrentPosition(function(position){
+						var userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);	*/
+						// store Athens location
+						var athensLocation = new google.maps.LatLng(37.984110,23.728280);	
+						// store Patras location 
+						var patrasLocation = new google.maps.LatLng(38.245960,21.734841);	
+						// create a map that will be used in the service initialisation				
+	  					map = new google.maps.Map(document.getElementById('map'), {
+						 	mapTypeId: google.maps.MapTypeId.ROADMAP,
+      						center: athensLocation,
+      						zoom: 15
+    					});
+    					// form the request, the query text parameter is set to doctor
+  						var request = {
+    						location: athensLocation,
+	    					radius: '80000',
+	    					keyword: 'οφθαλμίατρος',
+						    types: ['doctor']
+  						};
+  						service = new google.maps.places.PlacesService(map);
+  						service.nearbySearch(request, callback);						
+					//});									
+				}				
+				function callback(results, status) {
+					if (status == google.maps.places.PlacesServiceStatus.OK) {
+						// for each place found create a list element
+    					for (var i = 0; i < results.length; i++) {
+      						var place = results[i];
+      						$("#doctorsList").append("<li data-icon='arrow-r'><a onclick='selectedDoctor=\""+place.reference+"\"' href='detailsDoctor.html'><img  src='"+place.icon+"'/><h2>"+place.name+"</h2><p>"+place.formatted_address+"</p></a></li>").listview('refresh');;    	  					
+    	  					console.log(place);
+	    				}
+	    				$.mobile.loading( 'hide');
+  					}
+				}	
+				
+				setTimeout(function(){initialize()},500);			
+													
+			});
+		</script>
 		</div>
 	</body>
 </html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Ευφυής διάγνωση</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="../js/websocket.js"></script>
+		<script src="../js/jquery.imagemapster.js"></script>				
+	</head>
+	<body>
+		<div data-add-back-btn="true" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline">
+				<h1>Λεπτομέρειες Ιατρού</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
+						<!--<li><a href="buttons.html" data-icon="star">Buttons</a></li>
+						<li><a href="listviews.html" data-icon="grid">Lists</a></li>
+						-->
+						<li><a rel="external" href="forms.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
+						<li><a href="nav.html" data-icon="search">Πληροφορίες</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content" data-theme="a" >	
+				<div class="ui-grid-a">
+					<div style="width:100px;" class="ui-block-a"><img id="placeIcon"/></div>
+					<div class="ui-block-b">
+						<h3 id="placeName"></h3>											
+						<div id="placeAddress"></div>
+						<div id="placePhoneNumber"></div>
+						<div id="placeUrl1"></div>
+						<div id="placeUrl2"></div>										
+					</div>
+				</div>		
+				<h3>Στείλετε μήνυμα στον ιατρό</h3>
+				<div style="display:none" id="emailContainer" data-role="fieldcontain">				
+					<textarea id="emailMessage" cols="40" rows="8" name="textarea" id="textarea">Η διάγνωση από το ευφυές σύστημα είναι: </textarea>
+				</div>		
+				<button onclick="alert('Το μήνυμά σας στάλθηκε με επιτυχιά')" type="submit" data-theme="a">Αποστολή</button>
+	
+				
+				<!--
+				<form action="#" method="get">	
+					<div data-role="fieldcontain">
+						<label for="name">Text Input:</label>
+						<input type="text" name="name" id="name" value=""  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="textarea">Textarea:</label>
+						<textarea cols="40" rows="8" name="textarea" id="textarea"></textarea>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="search">Search Input:</label>
+						<input type="search" name="password" id="search" value=""  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="slider2">Flip switch:</label>
+						<select name="slider2" id="slider2" data-role="slider">
+							<option value="off">Off</option>
+							<option value="on">On</option>
+						</select>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="slider">Slider:</label>
+					 	<input type="range" name="slider" id="slider" value="50" min="0" max="100" data-highlight="true"  />
+					</div>
+
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup">
+							<legend>Choose as many snacks as you'd like:</legend>
+							<input type="checkbox" name="checkbox-1a" id="checkbox-1a" class="custom" />
+							<label for="checkbox-1a">Cheetos</label>
+
+							<input type="checkbox" name="checkbox-2a" id="checkbox-2a" class="custom" />
+							<label for="checkbox-2a">Doritos</label>
+
+							<input type="checkbox" name="checkbox-3a" id="checkbox-3a" class="custom" />
+							<label for="checkbox-3a">Fritos</label>
+
+							<input type="checkbox" name="checkbox-4a" id="checkbox-4a" class="custom" />
+							<label for="checkbox-4a">Sun Chips</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+						<fieldset data-role="controlgroup" data-type="horizontal">
+					    	<legend>Font styling:</legend>
+					    	<input type="checkbox" name="checkbox-6" id="checkbox-6" class="custom" />
+							<label for="checkbox-6">b</label>
+
+							<input type="checkbox" name="checkbox-7" id="checkbox-7" class="custom" />
+							<label for="checkbox-7"><em>i</em></label>
+
+							<input type="checkbox" name="checkbox-8" id="checkbox-8" class="custom" />
+							<label for="checkbox-8">u</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+					    <fieldset data-role="controlgroup">
+					    	<legend>Choose a pet:</legend>
+							<input type="radio" name="radio-choice-1" id="radio-choice-1" value="choice-1" checked="checked" />
+							<label for="radio-choice-1">Cat</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-2" value="choice-2"  />
+							<label for="radio-choice-2">Dog</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-3" value="choice-3"  />
+							<label for="radio-choice-3">Hamster</label>
+
+							<input type="radio" name="radio-choice-1" id="radio-choice-4" value="choice-4"  />
+							<label for="radio-choice-4">Lizard</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+					    <fieldset data-role="controlgroup" data-type="horizontal">
+							<legend>Layout view:</legend>
+							<input type="radio" name="radio-choice-b" id="radio-choice-c" value="on" checked="checked" />
+							<label for="radio-choice-c">List</label>
+							<input type="radio" name="radio-choice-b" id="radio-choice-d" value="off" />
+							<label for="radio-choice-d">Grid</label>
+							<input type="radio" name="radio-choice-b" id="radio-choice-e" value="other" />
+							<label for="radio-choice-e">Gallery</label>
+					    </fieldset>
+					</div>
+
+					<div data-role="fieldcontain">
+						<label for="select-choice-a" class="select">Choose shipping method:</label>
+						<select name="select-choice-a" id="select-choice-a" data-native-menu="false">
+							<option>Custom menu example</option>
+							<option value="standard">Standard: 7 day</option>
+							<option value="rush">Rush: 3 days</option>
+							<option value="express">Express: next day</option>
+							<option value="overnight">Overnight</option>
+						</select>
+					</div>
+
+					<div class="ui-body ui-body-b">
+						<fieldset class="ui-grid-a">
+							<div class="ui-block-a"><button type="submit" data-theme="d">Cancel</button></div>
+							<div class="ui-block-b"><button type="submit" data-theme="a">Submit</button></div>
+					    </fieldset>
+					</div>
+				</form>
+				-->
+				<script>			
+					$(document).ready(function(){
+						var request = {
+    						reference: selectedDoctor
+						};
+						var service = new google.maps.places.PlacesService(map);
+						setTimeout(function(){	
+						$.mobile.loading( 'show');
+						service.getDetails(request, function(place, status) {
+			    			if (status == google.maps.places.PlacesServiceStatus.OK) {
+      							console.log(place);
+      							$("#placeIcon").attr("src",place.icon);
+								$("#placeName").html(place.name);
+								$("#placeAddress").html(place.formatted_address);
+								$("#placePhoneNumber").html("tel: <a href='tel:"+place.formatted_phone_number+"'>"+place.formatted_phone_number+"</a>");
+								$("#placeUrl1").html("url1: <a href='"+place.url+"'>"+place.url+"</a>");
+								$("#placeUrl2").html("url2: <a href='"+place.website+"'>"+place.website+"</a>");   
+								$.mobile.loading( 'hide');  
+								$("#emailContainer").show();
+								$("#emailMessage").append(diagnosis);
+								 							
+    						}
+			  			});	
+			  			initialize()},500);				
+					});
+				</script>
+			</div>
+		</div>
+	</body>
+</html>
