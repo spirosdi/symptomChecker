@@ -73,7 +73,7 @@
 						// for each place found create a list element
     					for (var i = 0; i < results.length; i++) {
       						var place = results[i];
-      						$("#doctorsList").append("<li data-icon='arrow-r'><a onclick='selectedDoctor=\""+place.reference+"\"' href='detailsDoctor.html'><img  src='"+place.icon+"'/><h2>"+place.name+"</h2><p>"+place.formatted_address+"</p></a></li>").listview('refresh');;    	  					
+      						$("#doctorsList").append("<li data-icon='arrow-r'><a onclick='selectedDoctor=\""+place.reference+"\"' href='detailsDoctor.html'><img  src='"+place.icon+"'/><h2>"+place.name+"</h2><p>"+place.vicinity+"</p></a></li>").listview('refresh');;    	  					
     	  					console.log(place);
 	    				}
 	    				$.mobile.loading( 'hide');
