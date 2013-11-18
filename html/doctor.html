@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1">
+		<title>Ευφυής διάγνωση</title>
+		<link rel="stylesheet" href="themes/Bootstrap.css">
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
+		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+		<script src="../js/websocket.js"></script>
+		<script src="../js/jquery.imagemapster.js"></script>				
+	</head>
+	<body>
+		<div data-add-back-btn="true" data-role="page" data-theme="a">
+			<div data-role="header" data-position="inline">
+				<h1>Λεπτομέρειες Ιατρού</h1>
+				<div data-role="navbar">
+					<ul>
+						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
+						<li><a href="info.html" data-icon="search">Πληροφορίες</a></li>
+					</ul>
+				</div>
+			</div>
+			<div data-role="content" data-theme="a" >	
+				<div class="ui-grid-a">
+					<div style="width:100px;" class="ui-block-a"><img id="placeIcon"/></div>
+					<div class="ui-block-b">
+						<h3 id="placeName"></h3>											
+						<div id="placeAddress"></div>
+						<div id="placePhoneNumber"></div>
+						<div id="placeUrl1"></div>
+						<div id="placeUrl2"></div>										
+					</div>
+				</div>		
+				<h3>Στείλετε μήνυμα στον ιατρό</h3>
+				<div style="display:none" id="emailContainer" data-role="fieldcontain">				
+					<textarea id="emailMessage" cols="40" rows="8" name="textarea" id="textarea">Η διάγνωση από το ευφυές σύστημα είναι: </textarea>
+				</div>		
+				<button onclick="alert('Το μήνυμά σας στάλθηκε με επιτυχιά')" type="submit" data-theme="a">Αποστολή</button>
+				<script>			
+					$(document).ready(function(){
+						var request = {
+    						reference: selectedDoctor
+						};
+						var service = new google.maps.places.PlacesService(map);
+						setTimeout(function(){	
+						$.mobile.loading( 'show');
+						service.getDetails(request, function(place, status) {
+			    			if (status == google.maps.places.PlacesServiceStatus.OK) {
+      							console.log(place);
+      							$("#placeIcon").attr("src",place.icon);
+								$("#placeName").html(place.name);
+								$("#placeAddress").html(place.formatted_address);
+								$("#placePhoneNumber").html("tel: <a href='tel:"+place.formatted_phone_number+"'>"+place.formatted_phone_number+"</a>");
+								$("#placeUrl1").html("url1: <a target='_blank' href='"+place.url+"'>"+place.url+"</a>");
+								$("#placeUrl2").html("url2: <a target='_blank' href='"+place.website+"'>"+place.website+"</a>");   
+								$.mobile.loading( 'hide');  
+								$("#emailContainer").show();
+								$("#emailMessage").append(diagnosis);
+								 							
+    						}
+			  			});	
+			  			initialize()},500);				
+					});
+				</script>
+			</div>
+		</div>
+	</body>
+</html>

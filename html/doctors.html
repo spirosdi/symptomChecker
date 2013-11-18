@@ -8,9 +8,7 @@
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>	
-
-		
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>			
 	</head>
 	<body>
 		<div id="listView" data-add-back-btn="true" data-role="page" data-theme="a">
@@ -20,18 +18,13 @@
 				<div data-role="navbar">
 					<ul>
 						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
-						<!--<li><a href="buttons.html" data-icon="star">Buttons</a></li>
-						<li><a href="listviews.html" data-icon="grid">Lists</a></li>
-						-->
-						<li><a rel="external" href="forms.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
-						<li><a href="nav.html" data-icon="search">Πληροφορίες</a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
+						<li><a href="info.html" data-icon="search">Πληροφορίες</a></li>
 					</ul>
 				</div>
 			</div>
 			<div data-role="content" data-theme="a">
-
 				<h2>Αποτελέσματα:</h2>
-
 				<ul id="doctorsList" data-role="listview" data-inset="true" data-divider-theme="a">
 					<li data-role="list-divider">Ιατροί στην περιοχή σας</li>
 				</ul>			
@@ -73,15 +66,13 @@
 						// for each place found create a list element
     					for (var i = 0; i < results.length; i++) {
       						var place = results[i];
-      						$("#doctorsList").append("<li data-icon='arrow-r'><a onclick='selectedDoctor=\""+place.reference+"\"' href='detailsDoctor.html'><img  src='"+place.icon+"'/><h2>"+place.name+"</h2><p>"+place.vicinity+"</p></a></li>").listview('refresh');;    	  					
+      						$("#doctorsList").append("<li data-icon='arrow-r'><a onclick='selectedDoctor=\""+place.reference+"\"' href='doctor.html'><img  src='"+place.icon+"'/><h2>"+place.name+"</h2><p>"+place.vicinity+"</p></a></li>").listview('refresh');;    	  					
     	  					console.log(place);
 	    				}
 	    				$.mobile.loading( 'hide');
   					}
-				}	
-				
-				setTimeout(function(){initialize()},500);			
-													
+				}					
+				setTimeout(function(){initialize()},500);																
 			});
 		</script>
 		</div>
