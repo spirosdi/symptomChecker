@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ευφυής διάγνωση</title>
+		<title lang="en">Symptom Checker</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -13,22 +13,30 @@
 	<body>
 		<div id="listView" data-add-back-btn="true" data-role="page" data-theme="a">
 			<div data-role="header" data-position="inline">
-				<h1>Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης</h1>
+				<h1 lang="en" class="topHeader">Symptom Checker</h1>
+				<div class="ui-btn-right"  data-role="navbar" data-type="horizontal">
+					<ul>
+						<li><a class="elButton" onclick="window.lang.change('el');" >el</a></li>
+						<li><a class="enButton" onclick="window.lang.change('en');" >en</a></li>
+					</ul>
+			    </div>
 				<div id="map"></div>
 				<div data-role="navbar">
 					<ul>
-						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
-						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
-						<li><a href="info.html" data-icon="search">Πληροφορίες</a></li>
+						<li><a href="index.html" data-icon="home" ><span lang="en">Home</span></a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active"><span lang="en">Symptom Checker</span></a></li>
+						<li><a href="info.html" data-icon="search"><span lang="en">About</span></a></li>
 					</ul>
 				</div>
 			</div>
 			<div data-role="content" data-theme="a">
-				<h2>Αποτελέσματα:</h2>
+				<h2 lang="en">Results:</h2>
 				<ul id="doctorsList" data-role="listview" data-inset="true" data-divider-theme="a">
-					<li data-role="list-divider">Ιατροί στην περιοχή σας</li>
+					<li data-role="list-divider"><span lang="en">Doctors in your area</span></li>
 				</ul>			
 			</div>
+			<script src="../js/jquery-lang.js"></script>
+			<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>
 			<script>
 			$( document ).ready(function() {
 				// Handler for .ready() called.														
@@ -38,8 +46,8 @@
 				function initialize() {		
 					// get user's current location
 					$.mobile.loading( 'show');
-					/*navigator.geolocation.getCurrentPosition(function(position){
-						var userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);	*/
+					navigator.geolocation.getCurrentPosition(function(position){
+						var userLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);	
 						// store Athens location
 						var athensLocation = new google.maps.LatLng(37.984110,23.728280);	
 						// store Patras location 
@@ -47,19 +55,29 @@
 						// create a map that will be used in the service initialisation				
 	  					map = new google.maps.Map(document.getElementById('map'), {
 						 	mapTypeId: google.maps.MapTypeId.ROADMAP,
-      						center: athensLocation,
+      						center: userLocation,
       						zoom: 15
     					});
     					// form the request, the query text parameter is set to doctor
-  						var request = {
-    						location: athensLocation,
-	    					radius: '80000',
-	    					keyword: 'οφθαλμίατρος',
-						    types: ['doctor']
-  						};
+    					if(window.lang.currentLang=='el')
+  							var request = {
+    							location: athensLocation,
+		    					radius: '80000',
+		    					keyword: 'οφθαλμίατρος',
+							    types: ['doctor']
+  							};
+  						else
+	  						var request = {
+    							location: userLocation,
+		    					radius: '80000',
+		    					keyword: 'eyes specialist',
+							    types: ['doctor']
+  							};
+  							
+  						
   						service = new google.maps.places.PlacesService(map);
   						service.nearbySearch(request, callback);						
-					//});									
+					});									
 				}				
 				function callback(results, status) {
 					if (status == google.maps.places.PlacesServiceStatus.OK) {
@@ -72,8 +90,13 @@
 	    				$.mobile.loading( 'hide');
   					}
 				}					
-				setTimeout(function(){initialize()},500);																
+				setTimeout(function(){initialize()},500);	
+				window.lang = new jquery_lang_js();
+				window.lang.run();															
 			});
+			
+			
+			
 		</script>
 		</div>
 	</body>

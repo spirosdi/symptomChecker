@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ευφυής διάγνωση</title>
+		<title lang="en">Symptom Checker</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -11,16 +11,16 @@
 		<script src="../js/websocket.js"></script>
 		<script src="../js/jquery.imagemapster.js"></script>	
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>	
-		<script>			
+		<script>									
 			$(document).ready(function(){
 				//build body mapster
 				var areaHurt = {
-                		eyes: ["Έχετε επιλέξει ότι το πρόβλημα εντοπίζετε στην περιοχή των ματιών",
-                    		"Για να συνεχίσετε πατήστε συνέχεια",
+                		eyes: ["<span lang='en'>You chose that you feel pain in the eyes</span>",
+                    		"<span lang='en'>To continue click next</span>",
                     		"1"
     	                ],
-    	                chest: ["Έχετε επιλέξει ότι το πρόβλημα εντοπίζετε στην περιοχή του θώρακα",
-                    		"Για να συνεχίσετε πατήστε συνέχεια"
+    	                chest: ["<span lang='en'>You chose that you feel pain in the chest</span>",
+                    		"<span lang='en'>To continue click next</span>"
     	                ]
 	    	        };					
 				$('#humanBody').mapster({
@@ -36,6 +36,7 @@
             			$('#human-caption').show();  
 						$('#next').show();  
 						$('#chooseDoctor').hide();
+						window.lang.run();
             			//scroll to bottom
 						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");          			
             			//unblind click event that was binded before from next button
@@ -78,22 +79,47 @@
 				});							
 			});
 		</script>
+		<script src="../js/jquery-lang.js"></script>
+		<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>
+		<script>			
+			$(document).on('pagechange', function (event) {
+				console.log('page changed');
+			    window.lang = new jquery_lang_js();
+				window.lang.run();
+				var lang = window.lang.currentLang;
+				if(window.lang.currentLang=='el'){
+					$('.elButton').addClass('ui-btn-active ui-state-persist');
+					$('.enButton').removeClass('ui-btn-active ui-state-persist');
+				}
+				else {
+					$('.enButton').addClass('ui-btn-active ui-state-persist');		
+					$('.elButton').removeClass('ui-btn-active ui-state-persist');
+				}
+			});		
+		</script>
+		
 	</head>
 	<body>
 		<div data-role="page" data-theme="a">
 			<div data-role="header" data-position="inline">
-				<h1>Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης</h1>
+				<h1 lang="en" class="topHeader">Symptom Checker</h1>
+				<div class="ui-btn-right"  data-role="navbar" data-type="horizontal">
+					<ul>
+						<li><a class="elButton" onclick="window.lang.change('el');" >el</a></li>
+						<li><a class="enButton" onclick="window.lang.change('en');" >en</a></li>
+					</ul>
+			    </div>
 				<div data-role="navbar">
 					<ul>
-						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
-						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
-						<li><a href="info.html" data-icon="search">Πληροφορίες</a></li>
+						<li><a href="index.html" data-icon="home" ><span lang="en">Home</span></a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active"><span lang="en">Symptom Checker</span></a></li>
+						<li><a href="info.html" data-icon="search"><span lang="en">About</span></a></li>
 					</ul>
 				</div>
 			</div>
 			<div data-role="content" data-theme="a" >
-				<h2>Ευφυές σύστημα</h2>			
-				<p>Παρακαλώ επιλέξτε το μέρος του σώματος στο οποίο εντοπίζετε το πρόβλημα</p>													
+				<h2 lang="en">Symptom Checker</h2>			
+				<p lang="en">Please select the area where you feel pain</p>													
 				<div style="min-height:100px">
     				<div id="human-caption" style=display:none;">
         				<div id="human-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
@@ -102,8 +128,8 @@
         					<input class="inputButton" type="button" name="buttonYes" value="yes"/>
         					<input class="inputButton" type="button" name="buttonNo" value="no"/>
         				</div>
-        				<a style="display:none" id="chooseDoctor" href='doctors.html' data-role='button' data-icon='check'>επιλογή ιατρού</a>	    			
-	    				<a id="next" href='' data-role='button' data-icon='check'>συνέχεια</a>	    				
+        				<a style="display:none" id="chooseDoctor" href='doctors.html' data-role='button' data-icon='check'><span lang="en">select doctor in your area</span></a>	    			
+	    				<a id="next" href='' data-role='button' data-icon='check'><span lang="en">next</span></a>	    				
 					</div>
 				</div>
 				<p><center><img usemap="#humanMap" id="humanBody" width="70%"  src="../images/human.jpg"/></center></p>
@@ -112,6 +138,14 @@
   					<area data-name="chest" data-key="chest" shape="poly" coords="322,319,313,340,310,361,310,372,317,376,324,379,331,383,343,387,349,387,365,386,378,382,391,377,399,369,401,370,407,362,410,359,421,363,429,370,433,374,440,378,452,383,462,388,468,391,474,393,484,392,492,390,502,384,511,379,514,373,517,364,520,351,518,341,510,315,506,304,501,293,496,283,490,276,477,273,460,271,445,268,426,266,392,266,380,266,369,268,359,269,349,275,341,278,331,298" href="mercur.htm" alt="Mercury">
 				</map>				
 			</div>
+			<script src="../js/jquery-lang.js"></script>
+			<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>
+			<script>
+				$(document).ready(function (){
+					window.lang = new jquery_lang_js();
+					window.lang.run();
+				});
+			</script>
 		</div>
 	</body>
 </html>

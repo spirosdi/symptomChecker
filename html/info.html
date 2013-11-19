@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ευφυής διάγνωση</title>
+		<title lang="en">Symptom Checker</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -12,20 +12,27 @@
 	<body>
 		<div data-role="page" data-theme="a">
 			<div data-role="header" data-position="inline">
-				<h1>Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης</h1>
+				<h1 lang="en" class="topHeader">Symptom Checker</h1>
+				<div class="ui-btn-right"  data-role="navbar" data-type="horizontal">
+					<ul>
+						<li><a class="elButton" onclick="window.lang.change('el');" >el</a></li>
+						<li><a class="enButton" onclick="window.lang.change('en');" >en</a></li>
+					</ul>
+			    </div>
 				<div data-role="navbar">
 					<ul>
-						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
-						<li><a rel="external" href="expertClient.html" data-icon="gear">Ευφυές σύστημα</a></li>
-						<li><a href="info.html" class="ui-btn-active" data-icon="search">Πληροφορίες</a></li>
+						<li><a href="index.html" data-icon="home" ><span lang="en">Home</span></a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear"><span lang="en">Symptom Checker</span></a></li>
+						<li><a href="info.html" class="ui-btn-active" data-icon="search"><span lang="en">About</span></a></li>
 					</ul>
 				</div>
 			</div>
 			<div data-role="content" data-theme="a">
-				<h2>Πληροφορίες</h2>
-				Διπλωματική εργασία του Σπύρου Δημόπουλου<br/>
-				Επιβλέπων καθηγητής: Ιωάννης Χατζηλυγερούδης								
+				<h2 lang="en">About</h2>
+				<span lang="en">Master Thesis of Spyridon-K. Dimopoulos</span><br/>
+				<span lang="en">Supervisor: Dr Ioannis K. Hatzilygeroudis</span>								
 			</div>
+			
 		</div>
 	</body>
 </html>

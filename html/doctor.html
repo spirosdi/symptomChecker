@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title>Ευφυής διάγνωση</title>
+		<title lang="en">Ευφυής διάγνωση</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -14,12 +14,18 @@
 	<body>
 		<div data-add-back-btn="true" data-role="page" data-theme="a">
 			<div data-role="header" data-position="inline">
-				<h1>Λεπτομέρειες Ιατρού</h1>
+				<h1 lang="en">Doctor Details</h1>
+				<div class="ui-btn-right"  data-role="navbar" data-type="horizontal">
+					<ul>
+						<li><a class="elButton" onclick="window.lang.change('el');" >el</a></li>
+						<li><a class="enButton" onclick="window.lang.change('en');" >en</a></li>
+					</ul>
+			    </div>
 				<div data-role="navbar">
 					<ul>
-						<li><a href="index.html" data-icon="home" >Αρχική</a></li>
-						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active">Ευφυές σύστημα</a></li>
-						<li><a href="info.html" data-icon="search">Πληροφορίες</a></li>
+						<li><a href="index.html" data-icon="home" ><span lang="en">Home</span></a></li>
+						<li><a rel="external" href="expertClient.html" data-icon="gear" class="ui-btn-active"><span lang="en">Symptom Checker</span></a></li>
+						<li><a href="info.html" data-icon="search"><span lang="en">About</span></a></li>
 					</ul>
 				</div>
 			</div>
@@ -34,11 +40,13 @@
 						<div id="placeUrl2"></div>										
 					</div>
 				</div>		
-				<h3>Στείλετε μήνυμα στον ιατρό</h3>
+				<h3 lang="en">Send a message to the doctor</h3>
 				<div style="display:none" id="emailContainer" data-role="fieldcontain">				
-					<textarea id="emailMessage" cols="40" rows="8" name="textarea" id="textarea">Η διάγνωση από το ευφυές σύστημα είναι: </textarea>
+					<textarea id="emailMessage" cols="40" rows="8" name="textarea" id="textarea" lang='en'>Diagnosis from expert system:</textarea>
 				</div>		
-				<button onclick="alert('Το μήνυμά σας στάλθηκε με επιτυχιά')" type="submit" data-theme="a">Αποστολή</button>
+				<button onclick="alert(window.lang.convert('Thank you for your message!'))" type="submit" data-theme="a"><span lang="en">Send</span></button>
+				<script src="../js/jquery-lang.js"></script>
+				<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>				
 				<script>			
 					$(document).ready(function(){
 						var request = {
@@ -62,7 +70,9 @@
 								 							
     						}
 			  			});	
-			  			initialize()},500);				
+			  			initialize()},500);	
+			  			window.lang = new jquery_lang_js();
+						window.lang.run();			
 					});
 				</script>
 			</div>
