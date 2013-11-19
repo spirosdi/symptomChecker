@@ -10,12 +10,21 @@
 		<script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 		<script src="../js/jquery-lang.js"></script>
 		<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>
-		<script>			
+		<script>	
+			$(document).ready(function(){
+				$.get("http://ipinfo.io", function(response) {
+				    userCountry = response.country;
+				    console.log(userCountry);
+					if(userCountry == 'GR')
+						window.lang.change('el');
+				}, "jsonp");
+
+			});		
 			$(document).on('pagechange', function (event) {
 				console.log('page changed');
 			    window.lang = new jquery_lang_js();
 				window.lang.run();
-				var lang = window.lang.currentLang;
+				var lang = window.lang.currentLang;								
 				if(window.lang.currentLang=='el'){
 					$('.elButton').addClass('ui-btn-active ui-state-persist');
 					$('.enButton').removeClass('ui-btn-active ui-state-persist');

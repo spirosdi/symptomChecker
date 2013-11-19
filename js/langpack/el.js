@@ -18,8 +18,8 @@ jquery_lang_js.prototype.lang.el = {
 	'Results':'Αποτελέσματα:',
 	'Doctors in your area':'Ιατροί στην περιοχή σας',
 	'Doctor Details':'Λεπτομέρειες Ιατρού',
-	'Send a message to the doctor':'Στείλετε μήνυμα στον ιατρό',
+	'Send a message to the doctor containing the diagnosis from the expert system':'Στείλετε μήνυμα στον ιατρό με τη διάγνωση από το σύστημα',
 	'Diagnosis from expert system:':'Η διάγνωση από το ευφυές σύστημα είναι:',
-	'Send':'Αποστολή',
+	'Send message':'Αποστολή μηνύματος',
 	'Thank you for your message!':'Το μήνυμά σας στάλθηκε με επιτυχία'	                		
 }
