@@ -12,7 +12,7 @@
 		<script src="../js/jquery.imagemapster.js"></script>	
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>	
 		<script>									
-			$(document).ready(function(){
+			$(document).ready(function(){				
 				//build body mapster
 				var areaHurt = {
                 		eyes: ["<span lang='en'>You chose that you feel pain in the eyes</span>",
@@ -33,7 +33,8 @@
 			            //when user hovers an area then we fill in the caption area accordingly
             			$('#human-caption-header').html(areaHurt[data.key][0]);
 			            $('#human-caption-text').html(areaHurt[data.key][1]);
-            			$('#human-caption').show();  
+            			$('#human-caption').show(); 
+            			//$('#buttons').hide();              			 
 						$('#next').show();  
 						$('#chooseDoctor').hide();
 						window.lang.run();
@@ -46,26 +47,34 @@
 							// setup websocket with callbacks
 							ws = new WebSocket('ws://54.194.22.198:8088/');
 							ws.onopen = function() {
+								var idleInterval = setInterval(timerIncrement, 300); // 1 minute
 								console.log('connect');																									
-								//show input buttons
-								$("#buttons").show();
+								connectionClosed=0;
 								//bind click event to each input button
 								$(".inputButton").unbind();
 								//send to websocket the value of the clicked button
 								$(".inputButton").click(function(){
 									ws.send(this.value);
-								});						
+									console.log('click');
+								});	
+								idleTime = 0;					
 								ws.onmessage = function(event) {
+									$("#buttons").hide();
+									$.mobile.loading( 'show');
+									idleTime = 0;
 									$('#human-caption-text').text(event.data);
 								};
 								//when CLIPS program returns and the websocket is closed hide the input textfield
 								ws.onclose = function() {
-									console.log('DISCONNECT');									
-									$("#buttons").hide();
+									console.log('DISCONNECT');	
+									connectionClosed=1;								
+									//$(".inputButton").hide();
 									$('#next').hide(); 
 									//show the chooseDoctor button
 									$("#chooseDoctor").show();		
-									diagnosis = $('#human-caption-text').text();					 
+									diagnosis = $('#human-caption-text').text();	
+									clearInterval(idleInterval);
+									$.mobile.loading( 'hide');					 
 								};		
 				 	 			//send ws message with area hurt id
 				 	 			ws.send(areaHurt[data.key][2])						
@@ -78,6 +87,18 @@
 			        }
 				});							
 			});
+			
+			function timerIncrement() {
+			    idleTime = idleTime + 1;
+			    if (idleTime > 1) {
+			        console.log('idle');
+			        $.mobile.loading( 'hide');	
+			        if(connectionClosed!=1)		    
+					//show input buttons
+					$("#buttons").show();
+			    }
+			}
+			
 		</script>
 		<script src="../js/jquery-lang.js"></script>
 		<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>

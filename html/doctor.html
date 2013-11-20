@@ -41,11 +41,13 @@
 					</div>
 				</div>		
 				<p lang="en">Send a message to the doctor containing the diagnosis from the expert system</p>	
-				<a onclick="" href="mailto:spiros@wantedpixel.com?subject=message from symptom checker user&body=diagnosis from the expert system: " data-role="button"><span lang="en">Send message</span></a>
+				<a id="sendMailLink" onclick="" href="mailto:spiros@wantedpixel.com?subject=message from symptom checker user&body=diagnosis from the expert system: " data-role="button"><span lang="en">Send message</span></a>
 				<script src="../js/jquery-lang.js"></script>
 				<script src="../js/langpack/el.js" charset="utf-8" type="text/javascript"></script>				
 				<script>			
 					$(document).ready(function(){
+						//append diagnosis to send mail link
+						$("#sendMailLink").attr('href', $("#sendMailLink").attr('href')+diagnosis)
 						var request = {
     						reference: selectedDoctor
 						};
