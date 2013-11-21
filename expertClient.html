@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
-		<title lang="en">Symptom Checker</title>
+		<title lang="en">Eye CheckApp</title>
 		<link rel="stylesheet" href="themes/Bootstrap.css">
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile.structure-1.2.0.min.css" />
 		<script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -11,6 +11,11 @@
 		<script src="js/websocket.js"></script>
 		<script src="js/jquery.imagemapster.js"></script>	
 		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?libraries=places&sensor=false"></script>	
+		<style>
+			#human-caption-text img {
+				vertical-align:top;
+			}
+		</style>
 		<script>									
 			$(document).ready(function(){				
 				//build body mapster
@@ -23,29 +28,29 @@
                     		"<span lang='en'>To continue click next</span>"
     	                ]
 	    	        };					
-				$('#humanBody').mapster({
+				/*$('#humanBody').mapster({
 					fillColor: 'A9CFD5',
 			        fillOpacity: 0.8,
 			        mapKey: 'data-key',
 			        isSelectable: false,
-			        onMouseover: function (data) {
+			        onMouseover: function (data) {*/
 			            inArea = true;
 			            //when user hovers an area then we fill in the caption area accordingly
-            			$('#human-caption-header').html(areaHurt[data.key][0]);
-			            $('#human-caption-text').html(areaHurt[data.key][1]);
+            			/*$('#human-caption-header').html(areaHurt[data.key][0]);
+			            $('#human-caption-text').html(areaHurt[data.key][1]);*/
             			$('#human-caption').show(); 
             			//$('#buttons').hide();              			 
-						$('#next').show();  
+						//$('#next').show();  
 						$('#chooseDoctor').hide();
 						window.lang.run();
             			//scroll to bottom
 						//$("html, body").animate({ scrollTop: $(document).height() }, "slow");          			
             			//unblind click event that was binded before from next button
-            			$("#next" ).unbind();
+            			//$("#next" ).unbind();
             			//bind click event to next button
-            			$("#next").click(function() {
+            			//$("#next").click(function() {
 							// setup websocket with callbacks
-							ws = new WebSocket('ws://54.194.22.198:8088/');
+							ws = new WebSocket('ws://localhost:8088/');
 							ws.onopen = function() {
 								var idleInterval = setInterval(timerIncrement, 300); // 1 minute
 								console.log('connect');																									
@@ -62,7 +67,7 @@
 									$("#buttons").hide();
 									$.mobile.loading( 'show');
 									idleTime = 0;
-									$('#human-caption-text').text(event.data);
+									$('#human-caption-text').html(event.data);
 								};
 								//when CLIPS program returns and the websocket is closed hide the input textfield
 								ws.onclose = function() {
@@ -77,15 +82,15 @@
 									$.mobile.loading( 'hide');					 
 								};		
 				 	 			//send ws message with area hurt id
-				 	 			ws.send(areaHurt[data.key][2])						
+				 	 			ws.send('1');						
 							};	
 							ws.onerror = function() {
 								alert('Αυτήν τη στιγμή υπάρχει πρόβλημα επικοινωνίας με τον server. Παρακαλώ προσπαθήστε αργότερα')
 							}
 	            			$('#next').hide();  			 	 						 	 						 	 						
-						});            			
-			        }
-				});							
+						//});            			
+			        /*}
+				});		*/					
 			});
 			
 			function timerIncrement() {
@@ -140,7 +145,7 @@
 			</div>
 			<div data-role="content" data-theme="a" >
 				<h2 lang="en">Symptom Checker</h2>			
-				<p lang="en">Please select the area where you feel pain</p>													
+				<!--<p lang="en">Please select the area where you feel pain</p>-->													
 				<div style="min-height:100px">
     				<div id="human-caption" style=display:none;">
         				<div id="human-caption-header" style="font-style: italic; font-weight: bold; margin-bottom: 12px;"></div>
@@ -153,11 +158,11 @@
 	    				<a id="next" href='' data-role='button' data-icon='check'><span lang="en">next</span></a>	    				
 					</div>
 				</div>
-				<p><center><img usemap="#humanMap" id="humanBody" width="70%"  src="images/human.jpg"/></center></p>
+				<!--<p><center><img usemap="#humanMap" id="humanBody" width="70%"  src="images/human.jpg"/></center></p>
 				<map name="humanMap">
   					<area data-name="eyes" data-key="eyes" shape="poly" coords="382,99,374,109,375,118,381,120,386,123,393,124,400,125,406,124,412,120,420,121,425,121,431,125,439,127,448,125,454,124,458,119,458,114,454,110,450,107,445,104,439,101,428,100,421,102,419,105,416,107,412,106,411,102,408,99,397,97" href="sun.htm" alt="Sun">
   					<area data-name="chest" data-key="chest" shape="poly" coords="322,319,313,340,310,361,310,372,317,376,324,379,331,383,343,387,349,387,365,386,378,382,391,377,399,369,401,370,407,362,410,359,421,363,429,370,433,374,440,378,452,383,462,388,468,391,474,393,484,392,492,390,502,384,511,379,514,373,517,364,520,351,518,341,510,315,506,304,501,293,496,283,490,276,477,273,460,271,445,268,426,266,392,266,380,266,369,268,359,269,349,275,341,278,331,298" href="mercur.htm" alt="Mercury">
-				</map>				
+				</map>-->				
 			</div>
 			<script src="js/jquery-lang.js"></script>
 			<script src="js/langpack/el.js" charset="utf-8" type="text/javascript"></script>

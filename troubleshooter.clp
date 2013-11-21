@@ -24,7 +24,7 @@
  	=> 
  	(retract ?retractCh1) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes red ? (yes | no) "crlf
+ 		printout t crlf crlf crlf " <img src='images/symptoms/red-eyes.jpg' alt='red eyes'/>  Do you suffer from red eyes ? (yes | no)"crlf
 	) 
  	(assert (ifYesNochoise (read)))
 ) 
@@ -36,7 +36,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes swollen eyelids ? (Yes | No) " crlf
+ 		printout t crlf crlf crlf " <img src='images/symptoms/swollen-eyelids.jpg' alt='swollen eyelids'/> Do you suffer from swollen eyelids ? (Yes | No) " crlf
 	) 
  	(assert (ifYesNochoise1 (read)))
  ) 
@@ -48,7 +48,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from pus like discharge and crusting of eyelids on awakening ? (Yes | No) " crlf 
+ 		printout t crlf crlf crlf " <img src='images/symptoms/pus.jpg' alt='pus'/>Do you suffer from pus? Like discharge and crusting of eyelids on awakening ? (Yes | No) " crlf 
 	) 
 	(assert (ifYesNochoise2 (read)))
 ) 
@@ -59,7 +59,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf" You are suffering from Bacterial Conjunctivitis OR blepharitis.. " crlf  
+ 		printout t crlf crlf crlf" <img src='images/symptoms/bacterial_conjuctivitis.jpg' alt='bacterial conjuctivitis'/>You are suffering from Bacterial Conjunctivitis OR blepharitis.. " crlf  
 	)
 	(exit)
 ) 
@@ -71,7 +71,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from sticky, crusty eyelids red, itchy eyelidsloss of eyelashes ? (Yes | No) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from sticky, crusty eyelids, red itchy eyelids, loss of eyelashes ? (Yes | No) " crlf  
  	) 
 	(assert (ifYesNochoise3 (read)))
 ) 
@@ -94,7 +94,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from watery discharge fever and sore throat swollen glands in neck ? (Yes | No) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from watery discharge, fever, sore throat, swollen glands in neck ? (Yes | No) " crlf  
  	) 
  	(assert (ifYesNochoise4 (read))) 
 ) 
@@ -105,7 +105,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " You are suffering from Viral Conjunctivitis OR allergic conjunctivitis... " crlf 
+ 		printout t crlf crlf crlf "<img src='images/symptoms/alergic_conjuctivitis.jpg' alt='alergic conjuctivitis'/> You are suffering from Viral Conjunctivitis OR allergic conjunctivitis... " crlf 
  		(exit)
 	) 
 ) 
@@ -128,7 +128,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from watery discharge seasonal allergies itching eyes ? (Yes | No) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from watery discharge, itching eyes ? (Yes | No) " crlf  
  	) 
  	(assert (ifYesNochoise5 (read))) 
 ) 
@@ -139,7 +139,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from Allergic Conjunctivitis OR viral conjunctivitis ... " crlf
+ 		printout t crlf crlf crlf "<img src='images/symptoms/alergic_conjuctivitis.jpg' alt='alergic conjuctivitis'/>  You are suffering from Allergic Conjunctivitis OR viral conjunctivitis ... " crlf
  		(exit)
 	) 
 ) 
@@ -151,7 +151,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from fever and sore throat red rash, begins on face then body clear discharge from eye ? (Yes | No) " crlf
+ 		printout t crlf crlf crlf " Do you suffer from fever and sore throat, red rash that begins on face and expands to the body, blur from the eyes ? (Yes | No) " crlf
 	) 
  	(assert (ifYesNochoise6 (read))) 
 ) 
@@ -185,7 +185,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "Are you suffer from swelling of eyelids, tongue and face ? (yes | no) " crlf 
+ 		printout t crlf crlf crlf "Do you suffer from swelling of eyelids tongue and face ? (yes | no) " crlf 
 	) 
  	(assert (ifYesNochoise7 (read))) 
 ) 
@@ -197,7 +197,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from sweating use of new medication, insect bite, new foods rapid heart beat ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from sweating and rapid heart beat? Did you start using new medication, or did an insect bit you? Did you ate something for the first time? (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise8 (read))) 
 ) 
@@ -231,7 +231,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes red with watery discharge ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from eyes red with watery discharge ? (yes | no) " crlf  
  	) 		 
  	(assert (ifYesNochoise9 (read))) 
 ) 
@@ -243,7 +243,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from headache centered around eye headaches usually lasting 15-30 minutes more common in men nasal discharge ? (yes | no) " crlf  ) 
+ 		printout t crlf crlf crlf " Do you suffer from headache centered around eyes ? (yes | no) " crlf  ) 
  		(assert (ifYesNochoise10 (read))) 
 ) 
 ;;------------------R20------------------ 
@@ -265,7 +265,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from more common in elderly people may develop pus like drainage from eye ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from pus like drainage from eye ? (more common in elder people) (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise11 (read))) 
 ) 
@@ -299,7 +299,7 @@
 	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from blurred vision ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from blurred vision ? (yes | no) " crlf  
  	) 
  	(assert (ifYesNochoise12 (read))) 
 ) 
@@ -311,7 +311,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from pain and redness excessive tearing sensitivity to light feeling of foreign body in eye ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from pain and redness, excessive tearing sensitivity to light and feeling of foreign body in eye ? (yes | no) " crlf  
  	) 
 	(assert (ifYesNochoise13 (read))) 
 ) 
@@ -334,7 +334,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from eyes red lump on the edge of eyelid lump may drain pus painful lump ? (yes | no) " crlf  
+ 		printout t crlf crlf crlf " Do you suffer from eyes red, painful lump on the edge of eyelid (lump may drain pus)? (yes | no) " crlf  
  	) 
 	(assert (ifYesNochoise14 (read))) 
 ) 
@@ -345,7 +345,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf "You are suffering from Stye OR Chalazion... " crlf
+ 		printout t crlf crlf crlf "<img src='images/symptoms/chalazion.jpg' alt='chalazion'/>You are suffering from Stye OR Chalazion... " crlf
  		(exit)
 	) 
 ) 
@@ -357,7 +357,7 @@
  	=> 
  	(retract ?retractChy) 
  	(
- 		printout t crlf crlf crlf " Are you suffer from weakness of one side of the face recent viral illness drooping of lower eyelid difficulty closing eyelid discharge from the eye ? (yes| no) " crlf 		 
+ 		printout t crlf crlf crlf " Do you suffer from weakness of one side of the face, drooping of lower eyelid, difficulty closing eyelid? (yes| no) " crlf 		 
  	) 
  	(assert (ifYesNochoise15 (read))) 
 ) 

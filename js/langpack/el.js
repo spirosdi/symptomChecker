@@ -1,10 +1,10 @@
 jquery_lang_js.prototype.lang.el = {
-	'Symptom Checker':'Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης',
+	'Eye CheckApp':'Ευφυές Σύστημα Συμβουλευτικής Διάγνωσης',
 	'Home':'Αρχική',
 	'Symptom Checker':'Ευφυές σύστημα',
 	'About':'Πληροφορίες',
 	'Welcome':'Καλώς ήρθατε',
-	'Symptom checker helps you with your decision-making and health improvement efforts. Start now!':'Το παρόν εργαλείο σας παρέχει συμβουλευτική διάγνωση μέσω μίας σειράς απλών διαδοχικών ερωτήσεων.',
+	"Eye CheckApp's Symptom checker helps you with your decision-making and health improvement efforts. Start now!":'Το παρόν εργαλείο σας παρέχει συμβουλευτική διάγνωση μέσω μίας σειράς απλών διαδοχικών ερωτήσεων.',
 	'Start symptom checker':'Έναρξη συστήματος',
 	'About':'Πληροφορίες',
 	'Master Thesis of Spyridon-K. Dimopoulos':'Διπλωματική εργασία του Σπύρου Δημόπουλου',
